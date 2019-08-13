@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class CompaniesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+      $companies = Company::all();
+      return view('companies.index', compact('companies'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+      return view('companies.create');
     }
 
     /**
@@ -33,9 +34,16 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+      $attributes = request()->validate([
+        'name' => 'required',
+        'email'=> 'nullable|email',
+        'logo' => 'nullable',
+        'website' => 'nullable'
+      ]);
+      Company::create($attributes);
+      return redirect('/companies');
     }
 
     /**
@@ -46,7 +54,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+      return view('companies.show', compact('company'));
     }
 
     /**
@@ -57,7 +65,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+      return view('companies.edit', compact('company'));
     }
 
     /**
@@ -69,7 +77,8 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+      $company->update(request(['name', 'email', 'logo', 'website']));
+      return redirect('/companies');
     }
 
     /**
@@ -80,6 +89,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+      $company->delete();
+      return redirect('/companies');
     }
 }
