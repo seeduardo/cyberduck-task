@@ -5,23 +5,37 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Companies</div>
+                <div class="card-header">
+                  <h1>
+                    Companies
+                  </h1>
+                </div>
 
                 <div class="card-body">
-                  <ul>
-                    @foreach ($companies as $company)
-                      <a href="/companies/{{ $company->id }}">
-                        <li>{{ $company->name }}</li>
-                      </a>
-                    @endforeach
-                  </ul>
-                  <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <a href="/companies/create"><button type="button" class="btn btn-primary">
-                            {{ __('Add a Company') }}
-                        </button></a>
+                  @foreach ($companies as $company)
+                    <div class="card">
+                      <div class="card-header">
+                        <h2>
+                          {{ $company->name }}
+                        </h2>
+                      </div>
+                      <div class="card-body">
+                        <a href="/companies/{{ $company->id }}">
+                          <button type="button" class="btn btn-primary">
+                            {{ __('View Company Details') }}
+                          </button>
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                    <br>
+                  @endforeach
+
+                  <a href="/companies/create">
+                    <button type="button" class="btn btn-primary">
+                      {{ __('Add a Company') }}
+                    </button>
+                  </a>
+
                 </div>
             </div>
         </div>

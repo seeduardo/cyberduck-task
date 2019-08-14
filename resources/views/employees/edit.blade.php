@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit {{ $employee->first_name }} {{ $employee->last_name }}</div>
+                <div class="card-header">
+                  <h1>
+                    Edit {{ $employee->first_name }} {{ $employee->last_name }}
+                  </h1>
+                </div>
 
                 <div class="card-body">
                   <form class="" method="POST" action="/employees/{{ $employee->id }}">
@@ -67,25 +71,16 @@
                     </div>
 
                     <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Update Employee') }}
-                            </button>
-                        </div>
+                      <div class="col-md-6 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Update Employee') }}
+                        </button>
+                      </div>
                     </div>
-                  </form><br>
 
-                  <!-- <form class="" method="POST" action="/employees/{{ $employee->id }}">
-                    @method('DELETE')
-                    @csrf
-                    <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Delete Employee') }}
-                            </button>
-                        </div>
-                    </div>
-                  </form><br> -->
+                  </form>
+
+                  <br>
 
                   <a href="/companies">Back to Companies List</a>
 

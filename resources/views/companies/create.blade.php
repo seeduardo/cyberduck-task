@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add a New Company</div>
+                <div class="card-header">
+                  <h1>
+                    Add a New Company
+                  </h1>
+                </div>
 
                 <div class="card-body">
                   <form class="" method="POST" action="/companies">
@@ -72,8 +76,17 @@
                             </button>
                         </div>
                     </div>
+
                   </form>
+
+                  <br>
+                  <br>
+
+                  <a href="/companies">Back to Companies List
+                  </a>
+                     
                 </div>
+
             </div>
         </div>
     </div>

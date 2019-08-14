@@ -5,30 +5,45 @@
       <div class="row justify-content-center">
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header">{{ $employee->first_name }} {{ $employee->last_name }}, employee of {{ $company->name }}</div>
+                  <div class="card-header">
+                    <h1>
+                      {{ $employee->first_name }} {{ $employee->last_name }}
+                    </h1>
+                  </div>
 
                   <div class="card-body">
-                    <div class="">
-                      {{ $employee->email }}
+                    <div class="employee-email">
+                      <h2>
+                        <label for="employee-email">
+                          Email Address:
+                        </label>
+                        <b>
+                          {{ $employee->email }}
+                        </b>
+                      </h2>
                     </div>
-                    <div class="">
-                      {{ $employee->phone }}
-                    </div><br>
+                    <div class="employee-phone">
+                      <h2>
+                        <label for="employee-phone">
+                          Email Address:
+                        </label>
+                        <b>
+                          {{ $employee->phone }}
+                        </b>
+                      </h2>
+                    </div>
 
-                    <!-- <form class="" method="POST" action="/employees/{{ $employee->id }}">
-                      @method('DELETE')
-                      @csrf
-                      <div class="form-group row mb-0">
-                          <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-primary">
-                                  {{ __('Delete Employee') }}
-                              </button>
-                          </div>
-                      </div>
-                    </form><br> -->
+                    <a href="/employees/{{ $employee->id }}/edit">
+                      <button type="button" class="btn btn-primary">
+                        {{ __('Edit Employee Details') }}
+                      </button>
+                    </a>
 
-                    <a href="/employees/{{ $employee->id }}/edit">Edit Employee Details</a><br>
+                    <br>
+                    <br>
+
                     <a href="/companies">Back to Companies List</a>
+
                   </div>
               </div>
           </div>

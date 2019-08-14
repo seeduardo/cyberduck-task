@@ -78,7 +78,7 @@ class CompaniesController extends Controller
     public function update(Request $request, Company $company)
     {
       $company->update(request(['name', 'email', 'logo', 'website']));
-      return redirect('/companies');
+      return view('companies.show', compact('company'));
     }
 
     /**

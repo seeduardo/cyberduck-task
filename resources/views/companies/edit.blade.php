@@ -5,7 +5,11 @@
       <div class="row justify-content-center">
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header">Edit {{ $company->name }}</div>
+                  <div class="card-header">
+                    <h1>
+                      Edit {{ $company->name }}
+                    </h1>
+                  </div>
 
                   <div class="card-body">
                     <form class="" method="POST" action="/companies/{{ $company->id }}">
@@ -66,29 +70,33 @@
                           </div>
                       </div>
 
-                      <div class="form-group row mb-0">
-                          <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-primary">
-                                  {{ __('Update Company') }}
-                              </button>
-                          </div>
-                      </div>
-                    </form><br>
+                      <br>
+
+                      <button type="submit" class="btn btn-primary">
+                          {{ __('Update Company') }}
+                      </button>
+
+                    </form>
+
+                    <br>
 
                     <form class="" method="POST" action="/companies/{{ $company->id }}">
                       @method('DELETE')
                       @csrf
-                      <div class="form-group row mb-0">
-                          <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-primary">
-                                  {{ __('Delete Company') }}
-                              </button>
-                          </div>
-                      </div>
-                    </form><br>
 
-                    <a href="/companies">Back to Companies List</a>
-                </div>
+                      <button type="submit" class="btn btn-primary">
+                          {{ __('Delete Company') }}
+                      </button>
+
+                    </form>
+
+                    <br>
+                    <br>
+
+                    <a href="/companies">Back to Companies List
+                    </a>
+
+                  </div>
               </div>
           </div>
       </div>
