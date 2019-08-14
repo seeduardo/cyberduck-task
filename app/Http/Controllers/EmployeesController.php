@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Company;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -12,9 +13,10 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Company $company)
     {
-        //
+      // $employees = $company->employees();
+      return view('employees.index', compact('company'));
     }
 
     /**
@@ -22,9 +24,9 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Company $company)
     {
-        //
+        return view('employees.create', compact('company'));
     }
 
     /**
@@ -33,9 +35,16 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Company $company)
     {
-        //
+      $attributes = request()->validate([
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email'=> 'nullable|email',
+        'phone' => 'nullable'
+      ]);
+      $company->addEmployee($attributes);
+      return redirect()->route('companyEmployees', [$company]);
     }
 
     /**
@@ -44,9 +53,9 @@ class EmployeesController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(Company $company, Employee $employee)
     {
-        //
+        return view('employees.show', compact('employee'), compact('company'));
     }
 
     /**
@@ -57,7 +66,7 @@ class EmployeesController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -69,7 +78,8 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $employee->update(request(['first_name', 'last_name', 'email', 'phone']));
+        return view('employees.show', compact('employee'));
     }
 
     /**
@@ -78,8 +88,9 @@ class EmployeesController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(Company $company, Employee $employee)
     {
-        //
+        $employee->delete();
+        return back();
     }
 }

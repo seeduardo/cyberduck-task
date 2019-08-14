@@ -17,8 +17,15 @@
                     <div class="">
                       {{ $company->website }}
                     </div>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            <a href="/companies/{{ $company->id }}/employees"><button type="button" class="btn btn-primary">
+                                {{ __('View Employees') }}
+                            </button></a>
+                        </div>
+                    </div>
 
-                    <a href="/companies/{{ $company->id }}/edit">Edit/Delete</a><br>
+                    <a href="/companies/{{ $company->id }}/edit">Edit/Delete Company Details</a><br>
                     <a href="/companies">Back to Companies List</a>
                   </div>
               </div>

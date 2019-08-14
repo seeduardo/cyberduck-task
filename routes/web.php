@@ -21,4 +21,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('companies', 'CompaniesController');
 
-Route::resource('employees', 'EmployeesController');
+Route::get('/companies/{company}/employees', 'EmployeesController@index')->name('companyEmployees');
+Route::get('/companies/{company}/employees/create', 'EmployeesController@create');
+Route::post('/companies/{company}/employees', 'EmployeesController@store');
+Route::get('/employees/{employee}', 'EmployeesController@show');
+Route::get('/employees/{employee}/edit', 'EmployeesController@edit');
+Route::patch('/employees/{employee}', 'EmployeesController@update');
+Route::delete('/employees/{employee}', 'EmployeesController@destroy');
+
+
+
+// Route::resource('employees', 'EmployeesController');
