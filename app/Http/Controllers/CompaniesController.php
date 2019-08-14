@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompaniesController extends Controller
 {
@@ -14,7 +15,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-      $companies = Company::all();
+      $companies = DB::table('companies')->paginate(10);
       return view('companies.index', compact('companies'));
     }
 
@@ -34,9 +35,9 @@ class CompaniesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-      $attributes = request()->validate([
+      $attributes = $request->validate([
         'name' => 'required',
         'email'=> 'nullable|email',
         'logo' => 'nullable',

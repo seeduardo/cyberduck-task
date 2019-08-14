@@ -11,13 +11,13 @@
                   </div>
 
                   <div class="card-body">
-                    @if (!$company->employees->count())
+                    @if (!$employees->count())
                       <h2>
                         This company does not yet have any employees stored.
                       </h2>
                     @endif
 
-                    @foreach ($company->employees as $employee)
+                    @foreach ($employees as $employee)
                       <div class="card">
                         <div class="card-header">
                           <h2>{{ $employee->first_name }} {{ $employee->last_name }}
@@ -45,6 +45,10 @@
                       </div>
                       <br>
                     @endforeach
+
+                    {{ $employees->links() }}
+
+                    <br>
 
                     <a href="/companies/{{ $company->id }}/employees/create">
                       <button type="button" class="btn btn-primary">

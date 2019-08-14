@@ -15,8 +15,9 @@ class EmployeesController extends Controller
      */
     public function index(Company $company)
     {
-      // $employees = $company->employees();
-      return view('employees.index', compact('company'));
+      $companyId = $company->id;
+      $employees = Employee::where('company_id', '=', $companyId)->paginate(10);
+      return view('employees.index', compact('company'), compact('employees'));
     }
 
     /**
@@ -35,9 +36,9 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Company $company)
+    public function store(Request $request, Company $company)
     {
-      $attributes = request()->validate([
+      $attributes = $request->validate([
         'first_name' => 'required',
         'last_name' => 'required',
         'email'=> 'nullable|email',
