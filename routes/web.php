@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -28,7 +28,3 @@ Route::get('/employees/{employee}', 'EmployeesController@show');
 Route::get('/employees/{employee}/edit', 'EmployeesController@edit');
 Route::patch('/employees/{employee}', 'EmployeesController@update');
 Route::delete('/employees/{employee}', 'EmployeesController@destroy');
-
-
-
-// Route::resource('employees', 'EmployeesController');
