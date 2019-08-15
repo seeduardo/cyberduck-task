@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('content')
 <div class="container">
@@ -12,6 +12,12 @@
                 </div>
 
                 <div class="card-body">
+                  @if (!$companies->count())
+                    <h2>
+                      There are no companies stored as yet.
+                    </h2>
+                  @endif
+
                   @foreach ($companies as $company)
                     <div class="card">
                       <div class="card-header">
@@ -31,6 +37,8 @@
                   @endforeach
 
                   {{ $companies->links() }}
+
+                  <br>
 
                   <a href="/companies/create">
                     <button type="button" class="btn btn-primary">

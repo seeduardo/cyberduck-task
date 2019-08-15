@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('content')
 <div class="container">
@@ -76,7 +76,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                   </form>
 
                   <br>
