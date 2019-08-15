@@ -28,9 +28,7 @@
                         <label for="company-logo">
                           Logo:
                         </label>
-                        <b>
-                          {{ $company->logo }}
-                        </b>
+                          <img src="{{ asset('storage') }}/{{ $company->logo }}" alt="{{ $company->name }} logo" class="img-thumbnail" width="75">
                       </h2>
                     </div>
 

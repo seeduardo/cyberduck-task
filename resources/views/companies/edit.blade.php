@@ -46,7 +46,7 @@
                           <label for="logo" class="col-md-4 col-form-label text-md-right">{{ __('Logo') }}</label>
 
                           <div class="col-md-6">
-                              <input id="logo" type="text" class="form-control @error('logo') is-invalid @enderror" name="logo" value="{{ $company->logo }}" autocomplete="logo">
+                              <input id="logo" type="text" class="form-control @error('logo') is-invalid @enderror" name="logo"  autocomplete="logo" value="{{ $company->logo }}" disabled>
 
                               @error('logo')
                                   <span class="invalid-feedback" role="alert">

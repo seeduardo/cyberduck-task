@@ -37,13 +37,22 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-      $attributes = $request->validate([
+      $request->validate([
         'name' => 'required',
         'email'=> 'nullable|email',
-        'logo' => 'nullable',
+        'logo' => 'dimensions:min_width=100,min_height=100',
         'website' => 'nullable'
       ]);
-      Company::create($attributes);
+      $logo = $request->file('logo');
+      $filename = rand() . '.' . $logo->getClientOriginalExtension();
+      $logo->move(storage_path('app/public'), $filename);
+      $form_data = array(
+         'name' => $request->name,
+         'email' => $request->email,
+         'logo' => $filename,
+         'website' => $request->website
+      );
+      Company::create($form_data);
       return redirect('/companies');
     }
 
@@ -78,7 +87,12 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-      $company->update(request(['name', 'email', 'logo', 'website']));
+      $attributes = $request->validate([
+        'name' => 'required|min:3',
+        'email'=> 'nullable|email',
+        'website' => 'nullable'
+      ]);
+      $company->update($attributes);
       return view('companies.show', compact('company'));
     }
 
